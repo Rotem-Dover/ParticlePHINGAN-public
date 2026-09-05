@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+type: software
+title: "ParticlePHINGAN"
+version: 1.0-paper
+date-released: 2026-09-05
+license: MIT
+repository-code: "https://github.com/Rotem-Dover/ParticlePHINGAN-public"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22386940
+    description: "Zenodo archive of the trained checkpoints, scaler states, tables and GEANT4 truth this code reads"
+authors:
+  - family-names: Borysov
+    given-names: Oleksandr
+    affiliation: Department of Particle Physics and Astrophysics, Weizmann Institute of Science
+  - family-names: Dover
+    given-names: Rotem
+    email: rotem.dover@weizmann.ac.il
+    affiliation: Department of Particle Physics and Astrophysics, Weizmann Institute of Science
+  - family-names: Gross
+    given-names: Eilam
+    affiliation: Department of Particle Physics and Astrophysics, Weizmann Institute of Science
+  - family-names: Kakati
+    given-names: Nilotpal
+    affiliation: Department of Particle Physics and Astrophysics, Weizmann Institute of Science
+  - family-names: Tal Hod
+    given-names: Noam
+    affiliation: Department of Particle Physics and Astrophysics, Weizmann Institute of Science
+preferred-citation:
+  type: article
+  title: "Passage of particles through matter and the effective straggling-function: High-fidelity accelerated simulation via Physics-Informed Machine Learning"
+  authors:
+    - family-names: Borysov
+      given-names: Oleksandr
+    - family-names: Dover
+      given-names: Rotem
+    - family-names: Gross
+      given-names: Eilam
+    - family-names: Kakati
+      given-names: Nilotpal
+    - family-names: Tal Hod
+      given-names: Noam
+  year: 2026
+  notes: "Under peer review."

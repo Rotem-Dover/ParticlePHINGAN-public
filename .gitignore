@@ -1,0 +1,49 @@
+.claude/*
+scripts/*
+tmp/
+storage/
+lightning_logs/
+.idea
+.ipynb_checkpoints
+__pycache__
+*.pkl
+*.gif
+*.prof
+*.root
+*.ods
+*.png
+*.npy
+*.txt
+*.log
+*.npz
+*.bin
+*.json
+temp.py
+debug_g4.py
+*.DS_Store
+*ipynb
+*.pdf
+*.drawio
+out/
+notebooks
+uploads
+artifacts/
+
+# Symlinks back into the main checkout's gitignored test fixtures
+tests/physics/g4h_ionisation/explicit_physics/logs/g4_logs
+# Python virtual environment
+.venv/
+
+# Tracked helper scripts (scripts/* is ignored by default)
+!scripts/build_continuous_scaler_state.py
+!scripts/capture_straggling_reference.py
+!scripts/extract_g4_material_constants.py
+!scripts/stage_artifacts.sh
+!scripts/subsample_datasets_to_reference.py
+!tests/data/straggling_reference.npz
+!requirements.txt
+!.claude/hooks/
+!.claude/agents/
+
+# Measurement records behind the paper's figures and pinned thresholds
+!measurements/**

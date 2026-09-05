@@ -1,0 +1,44 @@
+InitTablesDump MATPROPS printout — Geant4 11.2.0 [MT] (8-December-2023)
+Tool: ~/Documents/geant4/geant_with_stepGenerator/StepsGenerator/tools/InitTablesDump.cc
+       (StepsGenerator/InitTablesDump, cmake-build-release)
+Cut: /run/setCut equivalent 1 um (CLI arg cutNm=1000.0, i.e. cutNm*nm = 1000 nm = 1 um),
+     matching the cut used to produce the legacy tables/*.bin files and
+     tests/physics/g4_init_tables/test_vs_g4_reference.py's documented convention.
+     NOTE: task-1-brief.md Step 4's example command uses CLI arg "1.0" (a typo for
+     "1000.0" — 1.0*nm = 1 nm, which clamps Tc to G4's lowest tabulated production
+     threshold and does NOT reproduce the aluminum golden). This dump uses 1000.0
+     throughout (Al regression gate, Fe, Be) to match the actual golden-generation
+     convention.
+Date: 2026-08-09
+Invocation: ./InitTablesDump <outDir> 1000.0 G4_<Al|Fe|Be>
+
+MATPROPS name=G4_Al density_g_cm3=2.6989999999999994 Imean_eV=166 Z=13 A_g_mole=26.9815 radlen_cm=8.8963176127266728 Tc_eV=1010.5686025012242
+MATPROPS name=G4_Fe density_g_cm3=7.8739999999999988 Imean_eV=286 Z=26 A_g_mole=55.845110798 radlen_cm=1.7574934650970921 Tc_eV=5591.6392187789997
+MATPROPS name=G4_Be density_g_cm3=1.8480000000000003 Imean_eV=63.700000000000003 Z=4 A_g_mole=9.0121800000000007 radlen_cm=35.27597513557388 Tc_eV=990
+
+Aluminum regression gate: g4_dedx.bin, g4_range.bin, g4_inverse_range.bin,
+g4_lambda_ion.bin all cmp byte-identical against
+storage/ResourceFiles_paper/proton/aluminum/validation_references/g4_reference/
+(with cutNm=1000.0). Al Tc_eV above (1010.5686025012242) differs from the value
+quoted in task-1-brief.md (1010.5686025013306) at the ~1e-13 relative level —
+floating-point noise between build/runs, not a physics difference; the four
+binary tables are exactly byte-identical, which is the actual gate criterion.
+
+Be Tc_eV=990 equals G4's lowest tabulated production-cut energy: beryllium's low
+density (1.848 g/cm3) means a 1 um path length converts to an electron energy
+below the lowest grid node, so G4 clamps to its minimum cut energy. This is
+expected behavior, not a bug, and 990 eV sits inside the brief's Be sanity range
+(6e2-2e3 eV).
+
+Fe and Be g4_reference/*.bin files copied to:
+  storage/ResourceFiles_paper/proton/iron/validation_references/g4_reference/
+  storage/ResourceFiles_paper/proton/beryllium/validation_references/g4_reference/
+
+Task 9 (2026-08-09): 10k truth files moved from ResourceFiles_revised into
+ResourceFiles_paper (G4-truth inputs on this branch, not "published"); 1k
+companion files produced locally from new _1k macros (copies of the _10k
+macros with only FileName/printProgress/beamOn changed) at
+~/Documents/geant4/geant_with_stepGenerator/StepsGenerator/PhDMacro_proton_{Fe,Be}_1k.mac.
+storage/ResourceFiles_paper/proton/iron/tracks/100MeV_10k.root (1.67M rows @10k, moved from _revised) and 100MeV_1k.root (1674329 rows, new run) both present.
+storage/ResourceFiles_paper/proton/beryllium/tracks/100MeV_10k.root (moved from _revised) and 100MeV_1k.root (8550886 rows, new run) both present.
+Row-count verification (uproot, Data tree, 1k files): iron 1674329 rows (window 1.2e6-2.2e6 ok), beryllium 8550886 rows (window 6e6-1.1e7 ok).

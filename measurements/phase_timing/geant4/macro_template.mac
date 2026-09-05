@@ -1,0 +1,36 @@
+/control/verbose 0
+/run/verbose 0
+
+/random/setSeeds 42 42
+
+/testem/det/setAbsMat G4_Al
+
+/testem/det/setAbsThick  5 cm
+/testem/det/setAbsYZ     30 cm
+
+/testem/phys/addPhysics local
+# __TIMING__ = true wraps hIoni in the TimedProcess shim; false = the exact
+# Fig 14 binary path (no wrapper object is created). PreInit-only command.
+/testem/phys/timeProcesses __TIMING__
+
+/run/setCut 1 um
+
+/run/initialize
+
+/particle/select proton
+/particle/process/dump
+
+/process/eLoss/fluct true
+
+/testem/stack/killSecondaries 2
+/testem/gun/setDefault
+
+/runAction/disableSaving true
+/runAction/FileName timing_dummy_proton.root
+
+/gun/particle proton
+/gun/energy 100 MeV
+
+/run/printProgress 100000
+
+/run/beamOn __N_EVENTS__

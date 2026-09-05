@@ -1,0 +1,113 @@
+{
+  "e2e": {
+    "max_ks": 0.0013518865639752242,
+    "ks": {
+      "L": 0.0010947674125451057,
+      "THETA": 0.0009074509959586738,
+      "E_CNT": 0.0008916139840158266,
+      "E_SEC": 0.0013518865639752242
+    },
+    "atom_mass_delta": {
+      "THETA": 0.0011221374749719182,
+      "E_SEC": 0.0011226479501783848
+    },
+    "max_atom_mass_delta": 0.0011226479501783848,
+    "n_continuum": {
+      "THETA": {
+        "opt": 1602043,
+        "eager": 1603499
+      },
+      "E_SEC": {
+        "opt": 1602043,
+        "eager": 1603500
+      }
+    },
+    "n_rows": {
+      "opt": 1959867,
+      "eager": 1958959
+    }
+  },
+  "pull": {
+    "max_abs_mean_shift": 0.917616343264138,
+    "pull": {
+      "L": 0.8930386306345639,
+      "THETA": 0.6388203684710462,
+      "E_CNT": 0.917616343264138,
+      "E_SEC": 0.629315718170474
+    },
+    "means": {
+      "L": {
+        "opt": 3.7865722281817016e-06,
+        "eager": 3.7910163259567077e-06
+      },
+      "THETA": {
+        "opt": 0.0001799269880658264,
+        "eager": 0.00018001926515912975
+      },
+      "E_CNT": {
+        "opt": 6634.348621105717,
+        "eager": 6627.08607497342
+      },
+      "E_SEC": {
+        "opt": 3570.428173585855,
+        "eager": 3565.1125016195438
+      }
+    }
+  },
+  "passed": true,
+  "device": "cuda",
+  "preset": "phin_gan",
+  "thresholds": {
+    "e2e_max_ks": 0.0036624316467523954,
+    "pull_max_abs_mean_shift": 5.670558654001141,
+    "atom_mass_delta": 0.0015070887011403578
+  },
+  "kernel_mode": {
+    "optimized": {
+      "length": {
+        "class": "PhysicsLengthGenerator",
+        "checkpoint": null,
+        "fused": false,
+        "fused_tf32": false
+      },
+      "continuous": {
+        "class": "ContinuousGenerator",
+        "checkpoint": "/storage/agrp/rotemdo/tensorboard_revised/proton/aluminum/logger_cnt/2026-08-12-164426_continuous_aluminum_60281d7c67_e29e061b/checkpoints/epoch=23499.ckpt",
+        "fused": true,
+        "fused_tf32": false
+      },
+      "secondary": {
+        "class": "SecondaryGenerator",
+        "checkpoint": "/storage/agrp/rotemdo/tensorboard_revised/proton/aluminum/logger_sec/2026-08-19-192831_secondary_s2_hardtanh_open_top_w16_aluminum_1eabc3aea3_ef3bec7d/checkpoints/epoch=17999.ckpt",
+        "fused": true,
+        "fused_tf32": false
+      }
+    },
+    "eager": {
+      "length": {
+        "class": "PhysicsLengthGenerator",
+        "checkpoint": null,
+        "fused": false,
+        "fused_tf32": false
+      },
+      "continuous": {
+        "class": "ContinuousGenerator",
+        "checkpoint": "/storage/agrp/rotemdo/tensorboard_revised/proton/aluminum/logger_cnt/2026-08-12-164426_continuous_aluminum_60281d7c67_e29e061b/checkpoints/epoch=23499.ckpt",
+        "fused": false,
+        "fused_tf32": false
+      },
+      "secondary": {
+        "class": "SecondaryGenerator",
+        "checkpoint": "/storage/agrp/rotemdo/tensorboard_revised/proton/aluminum/logger_sec/2026-08-19-192831_secondary_s2_hardtanh_open_top_w16_aluminum_1eabc3aea3_ef3bec7d/checkpoints/epoch=17999.ckpt",
+        "fused": false,
+        "fused_tf32": false
+      }
+    }
+  },
+  "vacuous": null,
+  "run_size": {
+    "n_events": 200,
+    "n_steps": 12000,
+    "seed": 20260729
+  }
+}

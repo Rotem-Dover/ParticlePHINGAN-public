@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ParticlePHINGAN Playground</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <header>
+    <div style="display:flex;align-items:center;gap:12px">
+      <h1 style="margin:0;flex:1">ParticlePHINGAN Playground</h1>
+      <button id="global-server-refresh" title="Restart the playground process">Refresh server</button>
+      <button id="global-server-close" title="Stop the playground process">Close server</button>
+    </div>
+    <div id="run-context" class="run-context">loading run context…</div>
+
+    <div class="phase-space-banner">
+      <span class="ps-label">Selector:</span>
+      <label class="mode-radio"><input type="radio" name="ps-mode" value="bin"> Bin</label>
+      <label class="mode-radio"><input type="radio" name="ps-mode" value="point" checked> Point</label>
+      <span class="ps-label" style="margin-left:14px">halfwidth [dex]</span>
+      <input id="ps-hw" type="number" value="0.05" step="0.01" min="0.005" max="1" style="width:80px">
+      <span class="ps-label" style="margin-left:14px">Phase-space:</span>
+      <span class="ps-value" id="ps-summary">(none — click on the G4 2D histogram to pin)</span>
+    </div>
+
+    <div class="gen-bar">
+      <span class="ps-label">Generator per stage:</span>
+      <span class="gen-group" id="grp-ion">
+        <label class="gen-proc" title="g4h_ionisation: step length + continuous loss + delta rays"><input type="checkbox" id="proc-ion" checked> ION</label>
+        <span class="gen-cell">
+          <span class="gen-label">LENGTH_ION</span>
+          <select id="gen-length" data-stage="length"></select>
+        </span>
+        <span class="gen-cell">
+          <span class="gen-label">CNT_ION</span>
+          <select id="gen-continuous" data-stage="continuous"></select>
+        </span>
+        <span class="gen-cell">
+          <span class="gen-label">SEC_ION</span>
+          <select id="gen-secondary" data-stage="secondary"></select>
+        </span>
+      </span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button data-tab="g4"    class="active">G4 Browser + Generators</button>
+    <button data-tab="trajectory">Trajectory</button>
+    <button data-tab="pull" >Pull</button>
+    <button data-tab="pairwise">Pairwise</button>
+    <button data-tab="table">Table</button>
+    <button data-tab="cluster">Cluster</button>
+  </nav>
+
+  <main>
+    <section id="tab-g4" class="tab active">
+      <div class="row">
+        <div id="tab-g4-left"  class="col"></div>
+        <div id="tab-g4-right" class="col"></div>
+      </div>
+    </section>
+    <section id="tab-trajectory" class="tab"></section>
+    <section id="tab-pull"  class="tab"></section>
+    <section id="tab-pairwise" class="tab"></section>
+    <section id="tab-table" class="tab"></section>
+    <section id="tab-cluster" class="tab"></section>
+  </main>
+
+  <footer>
+    <span id="status-bar"></span>
+  </footer>
+
+  <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

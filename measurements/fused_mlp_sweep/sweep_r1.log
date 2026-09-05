@@ -1,0 +1,44 @@
+device_name: 'NVIDIA RTX 6000 Ada Generation'   torch 2.5.1+cu124
+triton 3.1.0
+PHINGAN_FUSED_MLP='1'  PHINGAN_FUSED_MLP_TF32='0'
+[secondary] SecondaryGenerator  spec: n_cond 1 n_u 5 n_layers 6 tiles (16, 16) n_out 1 clamp_kind 2 act 1 launch (32, 16) tf32 False
+  shapes: eager (1048576, 1) fused (1048576,) emul (1048576,) launch (1048576, 1)
+  kernel vs emulator     col 0 (e_sec): mean|dz| 6.997e-08   max|dz| 1.073e-06
+  kernel vs eager        col 0 (e_sec): mean|dz| 6.500e-08   max|dz| 1.073e-06
+  [ok]   worst max|dz| 1.073e-06 <= tol 0.001
+  [FAIL] clamp probe: no input scale saturated both bounds
+/storage/agrp/rotemdo/venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py:167: UserWarning: TensorFloat32 tensor cores for float32 matrix multiplication available but not enabled. Consider setting `torch.set_float32_matmul_precision('high')` for better performance.
+  warnings.warn(
+  bench @1,048,576 lanes: eager   10.337 ms | compiled    1.363 ms | fused    0.542 ms
+  realised k: vs eager 19.06x | vs inductor-compiled  2.51x   <-- Amdahl-relevant k
+  launch sweep @1,048,576 lanes (tiles (16, 16), tf32 False):
+    grid: BLOCK [16, 32, 64, 128, 256] x num_warps [2, 4, 8, 16] (incumbent (32, 16) forced in as the within-job anchor)
+    BLOCK= 16 num_warps=2:    0.200 ms
+    BLOCK= 16 num_warps=4:    0.334 ms
+    BLOCK= 16 num_warps=8:    0.480 ms
+    BLOCK= 16 num_warps=16:    0.967 ms
+    BLOCK= 32 num_warps=2:    0.157 ms
+    BLOCK= 32 num_warps=4:    0.206 ms
+    BLOCK= 32 num_warps=8:    0.356 ms
+    BLOCK= 32 num_warps=16:    0.518 ms
+    BLOCK= 64 num_warps=2:    0.138 ms
+    BLOCK= 64 num_warps=4:    0.164 ms
+    BLOCK= 64 num_warps=8:    0.205 ms
+    BLOCK= 64 num_warps=16:    0.359 ms
+    BLOCK=128 num_warps=2:    0.134 ms
+    BLOCK=128 num_warps=4:    0.138 ms
+    BLOCK=128 num_warps=8:    0.167 ms
+    BLOCK=128 num_warps=16:    0.214 ms
+    BLOCK=256 num_warps=2:    0.241 ms
+    BLOCK=256 num_warps=4:    0.139 ms
+    BLOCK=256 num_warps=8:    0.151 ms
+    BLOCK=256 num_warps=16:    0.176 ms
+  BEST secondary: BLOCK=128 num_warps=2 (0.134 ms); spec was (32, 16) at 0.518 ms
+
+=== realised per-kernel speedup k ===
+  secondary  SecondaryGenerator   eager   10.337 | compiled    1.363 | fused    0.542 ms | k_vs_compiled  2.51x | k_vs_eager 19.06x
+=== _LAUNCH_CONFIG candidates ===
+  secondary  BLOCK=128 num_warps=2 (0.134 ms)
+FUSED-MLP PARITY FAILED:
+  secondary: fused shape (1048576,) != eager (1048576, 1)
+  secondary: could not saturate the clamp's upper bound -- the probe is vacuous
