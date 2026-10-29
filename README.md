@@ -1,10 +1,13 @@
 # ParticlePHINGAN
 
+[![Code DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23761220.svg)](https://doi.org/10.5281/zenodo.23761220)
+[![Data DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22386940.svg)](https://doi.org/10.5281/zenodo.22386940)
+
 Code accompanying the paper
 
 > **Passage of particles through matter and the effective straggling-function: High-fidelity accelerated simulation via Physics-Informed Machine Learning**
 > Oleksandr Borysov, Rotem Dover, Eilam Gross, Nilotpal Kakati and Noam Tal Hod
-> Department of Particle Physics and Astrophysics, Weizmann Institute of Science. Under peer review.
+> Department of Particle Physics and Astrophysics, Weizmann Institute of Science. Accepted in Physical Review X.
 > Corresponding author: Rotem Dover, rotem.dover@weizmann.ac.il
 
 PHIN-GAN is a physics-informed generative emulator of GEANT4's stepping of

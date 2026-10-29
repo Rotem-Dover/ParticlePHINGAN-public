@@ -8,6 +8,9 @@ license: MIT
 repository-code: "https://github.com/Rotem-Dover/ParticlePHINGAN-public"
 identifiers:
   - type: doi
+    value: 10.5281/zenodo.23761220
+    description: "Zenodo archive of this code, version v1.1-prx (the version cited in the paper)"
+  - type: doi
     value: 10.5281/zenodo.22386940
     description: "Zenodo archive of the trained checkpoints, scaler states, tables and GEANT4 truth this code reads"
 authors:
