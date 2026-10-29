@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this software, please cite the paper below."
 type: software
 title: "ParticlePHINGAN"
-version: 1.0-paper
-date-released: 2026-09-05
+version: 1.1-prx
+date-released: 2026-10-29
 license: MIT
 repository-code: "https://github.com/Rotem-Dover/ParticlePHINGAN-public"
 identifiers:
@@ -41,5 +41,9 @@ preferred-citation:
       given-names: Nilotpal
     - family-names: Tal Hod
       given-names: Noam
+  journal: "Physical Review X"
   year: 2026
-  notes: "Under peer review."
+  # Fill in once PRX assigns them, then uncomment:
+  # volume: 
+  # start: ""        # PRX article number, e.g. "041001"
+  # doi: 10.1103/

@@ -1,4 +1,4 @@
-# CLAUDE.md
+# Development guide
 
 ParticlePHINGAN is a physics-informed generative emulator of GEANT4's stepping of
 charged particles through matter: two WGAN-GP generators, conditioned on the
@@ -94,7 +94,7 @@ PYTHONPATH=src python -m \
 
 The figures, by script: each lives under `src/benchmark/system_vs_g4/` and runs
 from `src/` with `PYTHONPATH=.` as a module of `benchmark.system_vs_g4`.
-[docs/benchmarks.md](docs/benchmarks.md) spells out every command and output.
+[benchmarks.md](benchmarks.md) spells out every command and output.
 
 | fig | script |
 |---|---|
@@ -122,10 +122,9 @@ figures under `artifacts/benchmark_outputs/<material>/`.
 
 ## Invariants
 
-* **Never write under `storage/` from a tool.** `.claude/hooks/guard_storage.py`
-  blocks writes to `storage/` and `.venv/` and to checkpoint, ROOT, pickle,
-  `.npz` and `.bin` files. Those artifacts cost GPU-days or GEANT4-days to
-  reproduce; build them with the commands above instead.
+* **Never write under `storage/` by hand.** Checkpoint, ROOT, pickle, `.npz`
+  and `.bin` files cost GPU-days or GEANT4-days to reproduce; build them with
+  the commands above instead.
 * **Never widen a gate threshold to turn a red gate green.** Thresholds in
   `src/benchmark/verify_truth_parity.py` and
   `src/benchmark/runtime_profiling/verify_physics_gate.py` are twice a measured
@@ -179,19 +178,19 @@ figures under `artifacts/benchmark_outputs/<material>/`.
 
 ## Where things are documented
 
-* [docs/simulation.md](docs/simulation.md) — what is simulated, the three layers,
+* [simulation.md](simulation.md) — what is simulated, the three layers,
   the per-step quantities, and how to run a beam.
-* [docs/physics.md](docs/physics.md) — where every number comes from: constants,
+* [physics.md](physics.md) — where every number comes from: constants,
   the GEANT4 tables, the straggling models and the artifacts built from them.
-* [docs/artifacts.md](docs/artifacts.md) — every file the code reads or writes,
+* [artifacts.md](artifacts.md) — every file the code reads or writes,
   what builds it, and what reads it back.
-* [docs/training.md](docs/training.md) — the datasets, the WGAN-GP loop, the
+* [training.md](training.md) — the datasets, the WGAN-GP loop, the
   physics penalty and every knob a run is launched with.
-* [docs/benchmarks.md](docs/benchmarks.md) — the gates, the profiling
+* [benchmarks.md](benchmarks.md) — the gates, the profiling
   instruments, the recorded numbers and the command behind every figure.
-* [docs/cluster.md](docs/cluster.md) — what the deploy script sends, what is
+* [cluster.md](cluster.md) — what the deploy script sends, what is
   staged by hand, and the rules a job must obey to produce a quotable number.
-* [measurements/README.md](measurements/README.md) — the recorded results
+* [measurements/README.md](../measurements/README.md) — the recorded results
   themselves, with the hardware each ran on.
 
 ## Maintenance

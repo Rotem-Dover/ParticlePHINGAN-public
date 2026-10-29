@@ -1,4 +1,3 @@
-.claude/*
 scripts/*
 tmp/
 storage/
@@ -42,8 +41,8 @@ tests/physics/g4h_ionisation/explicit_physics/logs/g4_logs
 !scripts/subsample_datasets_to_reference.py
 !tests/data/straggling_reference.npz
 !requirements.txt
-!.claude/hooks/
-!.claude/agents/
 
 # Measurement records behind the paper's figures and pinned thresholds
 !measurements/**
+.claude/
+CLAUDE.md

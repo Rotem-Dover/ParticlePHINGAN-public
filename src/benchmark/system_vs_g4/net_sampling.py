@@ -95,7 +95,7 @@ def generate_continuous(
 
     # The deterministic-region overwrite above (correct_deterministic) is
     # what replaces every NaN the analytic mean/std lookup gathers on its
-    # ~29% NaN interior (see CLAUDE.md, "The continuous mean/std lookup").
+    # ~29% NaN interior (see docs/development.md, "The continuous mean/std lookup").
     # Unlike the runtime's along_step_do_it, this offline sampler carries no
     # device-side NaN accumulator -- so a NaN reaching here would propagate
     # silently into a figure instead of raising. Fail loudly instead.

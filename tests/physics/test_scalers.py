@@ -26,7 +26,7 @@ def test_scale_does_not_mutate_its_input():
 
 def test_secondary_scaler_enum_indices_are_int_wrapped():
     """torch 2.5 FX codegen cannot serialize IntEnum tensor indices; any
-    subscript using SecondaryFeats must go through int(). See CLAUDE.md."""
+    subscript using SecondaryFeats must go through int(). See docs/development.md."""
     tree = ast.parse(inspect.getsource(sec_scaler))
     bare = []
     for node in ast.walk(tree):

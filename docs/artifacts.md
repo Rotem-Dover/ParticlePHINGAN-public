@@ -194,16 +194,12 @@ step 6 against the untouched truth.
 script sends `src/` alone, which is why each submitter preflights the files
 its job will open and refuses instead of queueing.
 
-## Never write under `storage/` from a tool
+## Never write under `storage/` by hand
 
 The tree is gitignored, shared between checkouts, and long-running to
 regenerate — the mean/std table and a training run each occupy a machine for
-a stretch. `.claude/hooks/guard_storage.py` runs as a `PreToolUse` hook and
-exits 2 on any `Edit`, `Write` or `NotebookEdit` whose target starts with
-`storage/` or `.venv/`, or ends in `.ckpt`, `.root`, `.pkl`, `.npz` or
-`.bin`. Its message points at `scripts/` and the training package as the way
-to rebuild such a file. Write into `storage/` through the builders on this
-page, never by hand.
+a stretch. Write into `storage/` through the builders on this page (the
+scripts under `scripts/` and the training package), never by hand.
 
 ## See also
 

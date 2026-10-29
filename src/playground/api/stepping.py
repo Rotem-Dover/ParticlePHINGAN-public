@@ -69,7 +69,7 @@ def run():
         log.exception("trajectory simulation failed")
         return jsonify({"error": f"simulation failed: {type(e).__name__}: {e}"}), 500
 
-    # Dead particles' rows are NaN-padded (see CLAUDE.md), so each
+    # Dead particles' rows are NaN-padded (see docs/development.md), so each
     # trajectory keeps only the states with finite coordinates.
     states = ts.states_along_propagation_df
     event_ids = sorted(states[G4Columns.EventNum].unique().tolist())

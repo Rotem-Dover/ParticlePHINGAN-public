@@ -2,7 +2,7 @@
 
 TrackSimulator.run() calls self.stepping_manager.reset_nan_guard() before its
 step loop and self.stepping_manager.check_nan_guard() after it (the NaN
-accumulator contract described in CLAUDE.md's "The continuous mean/std
+accumulator contract described in docs/development.md's "The continuous mean/std
 lookup"). profile_runtime.py's CountingManager wraps the real
 SteppingManager and is swapped in as simulator.stepping_manager for every
 warm-up/sweep run; before this test was written it did not proxy either

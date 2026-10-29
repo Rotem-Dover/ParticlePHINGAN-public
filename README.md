@@ -92,7 +92,7 @@ cd src && PYTHONPATH=. python -m particle_propagation.track_simulator
 
 The acceptance gate against GEANT4 truth, the tests, and the script behind
 each figure of the paper are documented in [docs/benchmarks.md](docs/benchmarks.md);
-[CLAUDE.md](CLAUDE.md) has a one-page map from figure number to script.
+[docs/development.md](docs/development.md) has a one-page map from figure number to script.
 Retraining a generator is covered in [docs/training.md](docs/training.md).
 The recorded measurements the paper quotes, with the hardware each ran on,
 are in [measurements/README.md](measurements/README.md).
